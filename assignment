@@ -1,0 +1,241 @@
+Write a Python function that takes a list of numbers as input and returns the sum of all even numbers in 
+the list
+
+def sum_of_even_numbers(numbers):
+    """
+    Calculates the sum of even numbers in a list.
+
+    Args:
+        numbers (list): List of integers.
+
+    Returns:
+        int: Sum of even numbers.
+    """
+    even_sum = 0
+    for num in numbers:
+        if num % 2 == 0:
+            even_sum += num
+    return even_sum
+
+# Example usage:
+my_numbers = [2, 5, 8, 12, 7, 4]
+result = sum_of_even_numbers(my_numbers)
+print(f"Sum of even numbers: {result}")
+
+ 2. Create a Python function that accepts a string and returns the reverse of that string.
+
+def reverse_string(input_string):
+    """
+    Reverses the input string.
+
+    Args:
+        input_string (str): The string to be reversed.
+
+    Returns:
+        str: The reversed string.
+    """
+    return input_string[::-1]
+
+# Example usage:
+original_string = "Hello, world!"
+reversed_result = reverse_string(original_string)
+print(f"Original: {original_string}")
+print(f"Reversed: {reversed_result}")
+
+3.Implement a Python function that takes a list of integers and returns a new list containing the squares of 
+each number
+
+def compute_squares(numbers):
+    """
+    Computes the squares of each number in the input list.
+
+    Args:
+        numbers (list): List of integers.
+
+    Returns:
+        list: List containing the squares of each number.
+    """
+    return [num ** 2 for num in numbers]
+
+# Example usage:
+my_numbers = [1, 2, 3, 4, 5]
+squared_result = compute_squares(my_numbers)
+print(f"Squares of the numbers: {squared_result}")
+
+ 4. Write a Python function that checks if a given number is prime or not from 1 to 200.
+
+def is_prime(number):
+    """
+    Checks if a given number is prime.
+
+    Args:
+        number (int): The number to check.
+
+    Returns:
+        bool: True if the number is prime, False otherwise.
+    """
+    if number < 2:
+        return False
+    for i in range(2, int(number**0.5) + 1):
+        if number % i == 0:
+            return False
+    return True
+
+# Check numbers from 1 to 200
+for num in range(1, 201):
+    if is_prime(num):
+        print(f"{num} is prime.")
+
+5. Create an iterator class in Python that generates the Fibonacci sequence up to a specified number of 
+terms.
+
+class FibonacciIterator:
+    def __init__(self, num_terms):
+        self.num_terms = num_terms
+        self.current_term = 0
+        self.a, self.b = 0, 1
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.current_term >= self.num_terms:
+            raise StopIteration
+        else:
+            result = self.a
+            self.a, self.b = self.b, self.a + self.b
+            self.current_term += 1
+            return result
+
+# Example usage:
+num_terms_to_generate = 10
+fibonacci_gen = FibonacciIterator(num_terms_to_generate)
+
+for term in fibonacci_gen:
+    print(term)
+
+ 6. Write a generator function in Python that yields the powers of 2 up to a given exponent.
+
+
+def powers_of_two(exponent):
+    """
+    Generates powers of 2 up to the given exponent.
+    :param exponent: The maximum exponent for the power of 2.
+    """
+    current_power = 0
+    while current_power <= exponent:
+        yield 2 ** current_power
+        current_power += 1
+
+# Example usage:
+for value in powers_of_two(5):  # Generates powers of 2 up to 2^5
+    print(value)
+
+ 7. Implement a generator function that reads a file line by line and yields each line as a string.
+
+def read_file_line_by_line(file_path):
+    """
+    Reads a file line by line and yields each line as a string.
+    :param file_path: Path to the file.
+    """
+    try:
+        with open(file_path, 'r') as file:
+            for line in file:
+                yield line.strip()  # Remove any leading/trailing whitespace
+    except FileNotFoundError:
+        print(f"File '{file_path}' not found.")
+    except Exception as e:
+        print(f"An error occurred while reading the file: {e}")
+
+# Example usage:
+file_path = 'path/to/your/file.txt'
+for line in read_file_line_by_line(file_path):
+    print(line)
+
+ 8. Use a lambda function in Python to sort a list of tuples based on the second element of each tuple.
+
+my_list = [(3, 10), (1, 5), (2, 8), (4, 3)]
+
+# Sort by the second element (index 1) of each tuple
+sorted_list = sorted(my_list, key=lambda x: x[1])
+
+print(sorted_list)
+
+ 9. Write a Python program that uses `map()` to convert a list of temperatures from Celsius to Fahrenheit.
+
+def celsius_to_fahrenheit(celsius_temp):
+    """
+    Converts a Celsius temperature to Fahrenheit.
+    :param celsius_temp: Temperature in Celsius.
+    :return: Equivalent temperature in Fahrenheit.
+    """
+    return (celsius_temp * 9/5) + 32
+
+# Example list of temperatures in Celsius
+celsius_temperatures = [25, 10, 0, -5, 30]
+
+# Use map() to convert each temperature to Fahrenheit
+fahrenheit_temperatures = list(map(celsius_to_fahrenheit, celsius_temperatures))
+
+# Print the results
+for c, f in zip(celsius_temperatures, fahrenheit_temperatures):
+    print(f"{c}°C = {f:.2f}°F")
+
+# Output:
+# 25°C = 77.00°F
+# 10°C = 50.00°F
+# 0°C = 32.00°F
+# -5°C = 23.00°F
+# 30°C = 86.00°F
+
+ 10. Create a Python program that uses `filter()` to remove all the vowels from a given string.
+
+def remove_vowels(input_string):
+    """
+    Removes vowels from the given string.
+    :param input_string: The input string.
+    :return: A new string with vowels removed.
+    """
+    vowels = set("aeiouAEIOU")  # Define a set of vowels (both lowercase and uppercase)
+    return "".join(filter(lambda char: char not in vowels, input_string))
+
+# Example usage:
+user_input = input("Enter a string: ")
+result = remove_vowels(user_input)
+print(f"String without vowels: {result}")
+
+ 11.Imagine an accounting routine used in a book shop. It works on a list with sublists, which look like this:
+ Write a Python program, which returns a list with 2-tuples. Each tuple consists of the order number and the 
+product of the price per item and the quantity. The product should be increased by 10,- € if the value of the 
+order is smaller than 100,00 €.
+ Write a Python program using lambda and map
+
+def calculate_order_value(order):
+    """
+    Calculates the product value for an order.
+    If the total value is less than €100.00, adds €10.00.
+    :param order: A sublist representing an order (e.g., [order_number, price_per_item, quantity]).
+    :return: A tuple (order_number, product_value).
+    """
+    order_number, price_per_item, quantity = order
+    product_value = price_per_item * quantity
+    if product_value < 100.00:
+        product_value += 10.00
+    return order_number, product_value
+
+# Provided values (replace with your actual data)
+values = [
+    [1, 15.50, 5],
+    [2, 8.75, 8],
+    [3, 12.20, 3],
+    # Add more orders as needed
+]
+
+# Calculate product values using map and lambda
+result = list(map(lambda order: calculate_order_value(order), values))
+
+# Print the adjusted product values
+for order_number, product_value in result:
+    print(f"Order {order_number}: Adjusted Product value = €{product_value:.2f}")
+
+
